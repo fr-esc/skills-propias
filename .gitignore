@@ -1,0 +1,18 @@
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Editores
+*.swp
+*~
+.obsidian/
+
+# Python / Node (por si alguna skill genera artefactos de prueba)
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+
+# Salidas locales de las skills
+digests/
+scripts/
