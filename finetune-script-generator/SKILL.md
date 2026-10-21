@@ -3,7 +3,9 @@ name: finetune-script-generator
 description: >
   Guía interactiva y generador de notebooks de fine-tuning óptimos (Unsloth, QAT, TRL, ORPO) para Google Colab, Kaggle y Molab/Marimo.
   Convierte un objetivo, base_model y dataset_path en un flujo único validado y listo para exportar a Ollama (GGUF), vLLM y HuggingFace Hub.
-version: 1.3.2
+  Úsala cuando el usuario quiera entrenar o adaptar un modelo; no la uses para construir o curar el dataset de entrenamiento (para eso usa generador-datasets),
+  ni para diseñar la arquitectura del proyecto.
+version: 1.4.0
 language: es
 annexes:
   - reference/plantilla-notebook.md

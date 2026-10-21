@@ -3,7 +3,9 @@ name: socratic-interviewer
 description: >
   Entrevista socrática por turnos para diseñar proyectos de software desde cero basados en módulos tipo n8n
   (reutilizables y multicódigo). Genera DESIGN_LOG.md y el documento puente DESIGN_BRIEF.md sin alucinaciones.
-version: 2.1.1
+  Úsala cuando el proyecto aún no tenga requisitos cerrados ni DESIGN_BRIEF.md; no la uses si ese brief ya existe
+  (para eso usa socratic-blueprint-generator), ni para escribir código o generar la documentación del repositorio.
+version: 2.2.0
 language: es
 trigger: >
   Activar cuando el usuario quiera diseñar, definir o entrevistar los requisitos y módulos de un nuevo proyecto

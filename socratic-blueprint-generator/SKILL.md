@@ -3,7 +3,9 @@ name: socratic-blueprint-generator
 description: >
   Genera la arquitectura documental completa, fichas de nodos tipo n8n (MOD-XXX), contratos JSON/import y backlog
   atómico a partir de docs/DESIGN_BRIEF.md, dejando el proyecto listo para codificar sin alucinaciones.
-version: 2.1.1
+  Úsala cuando ya exista DESIGN_BRIEF.md o el usuario pegue uno equivalente; no la uses para entrevistar requisitos
+  desde cero (para eso usa socratic-interviewer), ni para implementar los módulos.
+version: 2.2.0
 language: es
 trigger: >
   Activar cuando exista docs/DESIGN_BRIEF.md (generado por socratic-interviewer) o cuando el usuario pegue un
