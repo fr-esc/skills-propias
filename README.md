@@ -59,15 +59,13 @@ Este repositorio **es** esa carpeta. No hay copia intermedia: lo que se edita aq
 ## Restaurar en otra máquina
 
 ```bash
-git clone ssh://git@ssh.github.com:443/fr-esc/skills-propias.git \
+git clone git@github.com:fr-esc/skills-propias.git \
   ~/.config/opencode/skills
 ```
 
 Si el directorio ya existe vacío:
 
 ```bash
-git clone ssh://git@ssh.github.com:443/fr-esc/skills-propias.git /tmp/skills-propias
+git clone git@github.com:fr-esc/skills-propias.git /tmp/skills-propias
 cp -a /tmp/skills-propias/. ~/.config/opencode/skills/
 ```
-
-
