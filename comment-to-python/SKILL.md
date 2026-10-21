@@ -1,8 +1,8 @@
 ---
 name: comment-to-python
 alias: py-from-comments
-description: Convierte archivos .py que contienen únicamente comentarios guía en código Python funcional in-place, conservando los comentarios originales y añadiendo un bloque resumen temporal al final.
-version: 1.1.1
+description: Convierte archivos .py que contienen únicamente comentarios guía en código Python funcional in-place, conservando los comentarios originales y añadiendo un bloque resumen temporal al final. Úsala cuando el usuario pida implementar o completar un archivo .py existente a partir de sus comentarios; no la uses para crear archivos nuevos desde cero, para refactorizar código que ya funciona ni para otros lenguajes.
+version: 1.2.0
 language: es
 trigger: "implementa|implanta|genera el código de *.py"
 supported_extensions:

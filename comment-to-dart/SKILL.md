@@ -1,8 +1,8 @@
 ---
 name: comment-to-dart
 alias: dart-from-comments
-description: Convierte archivos .dart con comentarios guía en código Dart/Flutter moderno in-place, conservando los comentarios originales y añadiendo un bloque resumen temporal al final.
-version: 1.1.1
+description: Convierte archivos .dart con comentarios guía en código Dart/Flutter moderno in-place, conservando los comentarios originales y añadiendo un bloque resumen temporal al final. Úsala cuando el usuario pida implementar o completar un archivo .dart existente a partir de sus comentarios; no la uses para crear proyectos Flutter nuevos desde cero, para refactorizar código que ya funciona ni para otros lenguajes.
+version: 1.2.0
 language: es
 trigger: "implementa|implanta|genera el código de *.dart"
 supported_extensions:

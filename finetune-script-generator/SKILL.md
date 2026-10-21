@@ -3,7 +3,7 @@ name: finetune-script-generator
 description: >
   Guía interactiva y generador de notebooks de fine-tuning óptimos (Unsloth, QAT, TRL, ORPO) para Google Colab, Kaggle y Molab/Marimo.
   Convierte un objetivo, base_model y dataset_path en un flujo único validado y listo para exportar a Ollama (GGUF), vLLM y HuggingFace Hub.
-version: 1.3.1
+version: 1.3.2
 language: es
 annexes:
   - reference/plantilla-notebook.md
@@ -178,7 +178,7 @@ Antes de imprimir el bloque de código final, comprueba internamente los siguien
 4. **Sincronización del `chat_template` y `train_on_responses_only`:** ¿Se usa `tokenizer.apply_chat_template` en la Celda 4 y en la Celda 6, y se envuelve el `SFTTrainer` con `train_on_responses_only` de forma segura (`try/except`)?
 5. **Documentación completa de hiperparámetros:** ¿Cada variable de la Celda 2 tiene su comentario explicando qué valores alternativos existen y qué cambiaría si se usan?
 6. **Privacidad por defecto y recordatorio final:** ¿Está `HF_PRIVATE_REPO = True` en la Celda 2, se pasa `private=HF_PRIVATE_REPO` en todas las funciones `push_to_hub*` de la Celda 7 y se imprime el aviso final indicando cómo pasarlo a público en HuggingFace?
-7. **Prompt de prueba contextualizado:** ¿El placeholder `{{TEST_PROMPT}}` de la Celda 6 ha sido rellenado con un ejemplo realista acorde a la tarea que el usuario describió en la entrevista?
+7. **Prompt de prueba contextualizado:** ¿El hueco de prompt de prueba de la Celda 6 ha sido rellenado con un ejemplo realista acorde a la tarea que el usuario describió en la entrevista?
 
 ### 5.2. Validación Empírica Post-Entrenamiento (Guiada por el Agente en Cloud)
 El script obliga a detenerse conceptualmente en la **Celda 6** para que el usuario y el agente interno de Colab/Kaggle/Molab revisen:

@@ -1,8 +1,8 @@
 ---
 name: comment-to-typescript
 alias: ts-from-comments
-description: Convierte archivos .ts, .tsx, .js y .jsx con comentarios guía en código TypeScript/React/React Native moderno in-place, conservando los comentarios originales y añadiendo un bloque resumen temporal al final.
-version: 1.2.1
+description: Convierte archivos .ts, .tsx, .js y .jsx con comentarios guía en código TypeScript/React/React Native moderno in-place, conservando los comentarios originales y añadiendo un bloque resumen temporal al final. Úsala cuando el usuario pida implementar o completar un archivo .ts/.tsx/.js/.jsx existente a partir de sus comentarios; no la uses para crear archivos nuevos desde cero, para refactorizar código que ya funciona ni para otros lenguajes.
+version: 1.3.0
 language: es
 trigger: "implementa|implanta|genera el código de *.ts|*.tsx|*.js|*.jsx"
 supported_extensions:

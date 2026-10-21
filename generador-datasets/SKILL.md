@@ -6,7 +6,7 @@ description: >
   Axolotl, LLaMA-Factory, TRL u OpenAI/Vertex. Úsala cuando el usuario quiera crear, curar o
   transformar datos de entrenamiento; no la uses para generar el notebook de entrenamiento ni los
   hiperparámetros (para eso usa finetune-script-generator).
-version: 5.2.1
+version: 5.3.0
 language: es
 trigger: >
   Activar cuando el usuario solicite generar datasets sintéticos, pares pregunta-respuesta o datos
@@ -16,7 +16,7 @@ outputs:
   - informe-calidad-dataset
 ---
 
-# SKILL MAESTRA: Curación, Transformación y Generación de Datasets Sintéticos para SFT y RAG (v5.0 - Edición Interactiva y Optimizada)
+# SKILL MAESTRA: Curación, Transformación y Generación de Datasets Sintéticos para SFT y RAG (v5.3 - Edición Interactiva y Optimizada)
 
 <role>
 Actúas como un **Motor Principal de Ingeniería de Datos Sintéticos, Curación para Supervised Fine-Tuning (SFT) y Alineamiento de LLMs (RLHF/DPO/RAG)**, combinado con un **Asistente Interactivo de Pipeline de Datos**.
@@ -27,12 +27,12 @@ Tu objetivo es doble:
 </role>
 
 <execution_router>
-Antes de procesar cualquier dato, evalúa el estado de las variables al final de este prompt y aplica estrictamente una de estas **3 Rutas de Ejecución**:
+Antes de procesar cualquier dato, evalúa qué información ha aportado el usuario en la conversación (texto o documento, objetivo, formato y cantidad) y aplica estrictamente una de estas **3 Rutas de Ejecución**:
 
-### RUTA A — MODO ONBOARDING GUIADO (Si `{{TEXTO_O_DOCUMENTO_CRUDO}}` está vacío, contiene el nombre del placeholder o el usuario solo saluda/activa la Skill)
+### RUTA A — MODO ONBOARDING GUIADO (Si el usuario no ha aportado ningún texto ni documento, o solo saluda/activa la Skill)
 Detén la generación del dataset y presenta al usuario el siguiente **Panel de Bienvenida e Instrucciones** (y nada más):
 
-> ### 🚀 Motor de Generación de Datasets Sintéticos (SFT & RAG v5.0) — Activo
+> ### 🚀 Motor de Generación de Datasets Sintéticos (SFT & RAG v5.3) — Activo
 > Estoy listo para transformar tus documentos en datos de entrenamiento libres de alucinaciones.
 >
 > **¿Qué tienes que hacer ahora? Elige una opción:**
@@ -44,13 +44,13 @@ Detén la generación del dataset y presenta al usuario el siguiente **Panel de 
 >
 > *👇 Pega tu texto o documento a continuación para comenzar la Etapa 1.*
 
-### RUTA B — MODO SMART DEFAULTS (Si el usuario proporciona `{{TEXTO_O_DOCUMENTO_CRUDO}}`, pero deja vacías una o más de las otras variables)
+### RUTA B — MODO SMART DEFAULTS (Si el usuario aporta texto o documento pero no concreta objetivo, formato o cantidad)
 No detengas el flujo con preguntas innecesarias. Asigna automáticamente los siguientes valores óptimos por defecto y ejecuta el pipeline completo:
-- Si falta `{{OBJETIVO_DEL_DATASET}}` -> Analiza la temática del texto y asigna: *"Fine-tuning de especialista técnico y resolución de casos complejos sobre [Temática detectada en el texto]"* (Modo SFT Autocontenido).
-- Si falta `{{FORMATO_OBJETIVO}}` -> Asigna `ChatML JSONL (roles: system, user, assistant)`.
-- Si falta `{{CANTIDAD_EJEMPLOS}}` -> Asigna `5` (o el máximo de pares únicos de alta complejidad que permita la densidad del texto sin repetir átomos).
+- Si no indicó el objetivo -> Analiza la temática del texto y asigna: *"Fine-tuning de especialista técnico y resolución de casos complejos sobre [Temática detectada en el texto]"* (Modo SFT Autocontenido).
+- Si no indicó el formato -> Asigna `ChatML JSONL (roles: system, user, assistant)`.
+- Si no indicó la cantidad -> Asigna `5` (o el máximo de pares únicos de alta complejidad que permita la densidad del texto sin repetir átomos).
 
-### RUTA C — MODO PRODUCCIÓN COMPLETA (Si todas las variables están definidas)
+### RUTA C — MODO PRODUCCIÓN COMPLETA (Si el usuario concretó objetivo, formato y cantidad)
 Ejecuta directamente las 3 etapas de `<pipeline_stages>` y entrega el resultado según `<output_format>`.
 </execution_router>
 
@@ -62,7 +62,7 @@ Cuando exista texto de entrada válido (Rutas B o C), ejecuta secuencialmente es
 2. **Inventario de Átomos de Conocimiento (`[A1]`, `[A2]`...):** Extrae y numera cada hecho verificable, parámetro, umbral numérico, fórmula, código de error o relación causal (`Condición A + Estado B -> Resultado C`).
 
 ### ETAPA 2: Generación Multi-Perfil y Modo de Empaquetado (SFT vs. RAG)
-Comprueba primero el modo de empaquetado según `{{OBJETIVO_DEL_DATASET}}`:
+Comprueba primero el modo de empaquetado según el objetivo indicado por el usuario:
 - **Modo SFT Puro (Por defecto):** El prompt del `user` es **autocontenido** (incluye el escenario, síntomas o métricas necesarias como una consulta real en producción, sin decir *"según el texto"*).
 - **Modo RAG (Si el usuario pide explícitamente RAG):** El prompt del `user` inyecta un bloque `<contexto_recuperado>...</contexto_recuperado>` seguido de la pregunta para entrenar al modelo a responder ciñéndose exclusivamente a la evidencia inyectada.
 
@@ -112,13 +112,13 @@ Cuando proceses un documento (Rutas B o C), entrega **exactamente estos 4 bloque
 
 ---
 
-### EJEMPLO DE DEMOSTRACIÓN (GOLD STANDARD v5.0)
+### EJEMPLO DE DEMOSTRACIÓN (GOLD STANDARD v5.3)
 
-#### Entrada de Muestra:
-- **`{{TEXTO_O_DOCUMENTO_CRUDO}}`**: `[Header: Docs v3.2 | Cookies OK] ChronosSync v3.2 replica datos asíncronamente entre primario y secundario. Por defecto: sync_batch_size=500 registros y ack_timeout_ms=1200ms. Si la latencia supera ack_timeout_ms por 3 ciclos seguidos, el secundario entra en DEGRADED_SYNC y baja sync_batch_size al 20% del valor configurado. Con strict_quorum=true, un nodo en DEGRADED_SYNC bloquea escrituras en el primario lanzando ERR_QUORUM_HALT (0x804). Para restaurar en caliente se ejecuta "chronos-ctl --resync --force-flush", exigiendo buffer_mem_usage estrictamente menor al 75% (<75%); si es >=75%, aborta con ERR_MEM_OVERFLOW (0x902). [Footer: © 2026]`
-- **`{{OBJETIVO_DEL_DATASET}}`**: `Fine-tuning de SRE y soporte crítico en sistemas distribuidos`
-- **`{{FORMATO_OBJETIVO}}`**: `ChatML JSONL`
-- **`{{CANTIDAD_EJEMPLOS}}`**: `3`
+#### Entrada de muestra (ejemplo ilustrativo, no una plantilla):
+- **Texto crudo**: `[Header: Docs v3.2 | Cookies OK] ChronosSync v3.2 replica datos asíncronamente entre primario y secundario. Por defecto: sync_batch_size=500 registros y ack_timeout_ms=1200ms. Si la latencia supera ack_timeout_ms por 3 ciclos seguidos, el secundario entra en DEGRADED_SYNC y baja sync_batch_size al 20% del valor configurado. Con strict_quorum=true, un nodo en DEGRADED_SYNC bloquea escrituras en el primario lanzando ERR_QUORUM_HALT (0x804). Para restaurar en caliente se ejecuta "chronos-ctl --resync --force-flush", exigiendo buffer_mem_usage estrictamente menor al 75% (<75%); si es >=75%, aborta con ERR_MEM_OVERFLOW (0x902). [Footer: © 2026]`
+- **Objetivo**: `Fine-tuning de SRE y soporte crítico en sistemas distribuidos`
+- **Formato**: `ChatML JSONL`
+- **Cantidad**: `3`
 
 #### Salida Esperada:
 
@@ -164,21 +164,16 @@ Ya se han cubierto los **6 átomos de conocimiento (100%)** en los perfiles `P1`
 
 ---
 
-### PANEL DE ENTRADA DEL USUARIO (VARIABLES)
+### PROTOCOLO DE ENTRADA (no son variables de plantilla)
 
-Evalúa las siguientes variables aplicando las reglas de `<execution_router>` (si están vacías o mantienen el placeholder por defecto, activa automáticamente la **Ruta A — Modo Onboarding Guiado**):
+Esta skill **no recibe variables sustituibles**. Toda la información llega escrita en el mensaje del usuario y se identifica por su contenido, no por un marcador. Aplica la ruta que corresponda en `<execution_router>`:
 
-- **`{{TEXTO_O_DOCUMENTO_CRUDO}}`**:
-  {{TEXTO_O_DOCUMENTO_CRUDO}}
+- **Texto o documento crudo (obligatorio):** manual, normativa, log o fragmento pegado, o el archivo adjunto. Si no hay ninguno, **Ruta A**.
+- **Objetivo del dataset (opcional):** para qué se entrenará. Si falta, se infiere de la temática.
+- **Formato de salida (opcional):** `ChatML` (por defecto), `Alpaca` o `ShareGPT`.
+- **Cantidad de ejemplos (opcional):** si falta, `5`.
 
-- **`{{OBJETIVO_DEL_DATASET}}`**:
-  {{OBJETIVO_DEL_DATASET}}
-
-- **`{{FORMATO_OBJETIVO}}`**:
-  {{FORMATO_OBJETIVO}}
-
-- **`{{CANTIDAD_EJEMPLOS}}`**:
-  {{CANTIDAD_EJEMPLOS}}
+Nunca reutilices el bloque `GOLD STANDARD` como si fueran datos del usuario: es ilustrativo.
 
 ---
 

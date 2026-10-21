@@ -52,6 +52,7 @@ Este repositorio **es** esa carpeta. No hay copia intermedia: lo que se edita aq
 - **`id = name = nombre de carpeta`**, siempre en `kebab-case`. OpenCode usa la carpeta como identificador.
 - **Un `SKILL.md` por skill**, con frontmatter YAML mínimo: `name` y `description`. El resto de claves (`trigger`, `related_skills`, `annexes`, etc.) son documentación para humanos.
 - **`description` en tercera persona** con el patrón *«Úsala cuando… / no la uses para…»*: es lo que OpenCode usa para activarla automáticamente y lo que evita que dos skills se pisen.
+- **Sin variables de plantilla**: OpenCode nunca sustituye un `{{MARCADOR}}`. Las entradas se describen en prosa y se identifican por su contenido en el mensaje del usuario, no por un hueco que nadie rellena.
 - **Fronteras explícitas**: las skills que se solapan declaran a quién ceder el caso.
 - **`## Eval de aceptación`** al final de cada una: entrada mínima, salida esperada, prohibiciones y un test negativo de frontera. Sirve como guion de prueba manual.
 - **Anexos en `reference/`**: contenido largo (plantillas, ejemplos few-shot) que no se precarga. El `SKILL.md` indica cuándo leerlo y con qué ruta absoluta.

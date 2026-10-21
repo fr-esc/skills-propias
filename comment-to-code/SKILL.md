@@ -1,8 +1,8 @@
 ---
 name: comment-to-code
 alias: file-from-comments
-description: Skill enrutadora ligera que detecta la extensión del archivo (.py, .ts/.tsx/.js/.jsx, .sql, .dart) y delega la implementación in-place a la skill especializada correspondiente sin mezclar contextos.
-version: 1.1.1
+description: Enrutador para peticiones de implementación que abarcan varios archivos de lenguajes distintos (.py, .ts/.tsx/.js/.jsx, .sql, .dart) o cuyo lenguaje no está claro; delega cada archivo en la skill especializada sin mezclar reglas. Úsala solo cuando haya más de un lenguaje implicado o la extensión sea desconocida; si la petición afecta a un único archivo de extensión conocida, no la uses y carga directamente comment-to-python, comment-to-typescript, comment-to-sql o comment-to-dart.
+version: 1.2.0
 language: es
 trigger: "implementa|implanta|genera el código de *"
 supported_extensions:

@@ -1,8 +1,8 @@
 ---
 name: comment-to-sql
 alias: sql-from-comments
-description: Convierte archivos .sql con comentarios guía en sentencias SQL limpias y seguras in-place, conservando los comentarios originales y añadiendo un bloque resumen temporal al final.
-version: 1.1.1
+description: Convierte archivos .sql con comentarios guía en sentencias SQL limpias y seguras in-place, conservando los comentarios originales y añadiendo un bloque resumen temporal al final. Úsala cuando el usuario pida implementar o completar un archivo .sql existente a partir de sus comentarios; no la uses para crear esquemas nuevos desde cero, para optimizar consultas ya escritas ni para otros lenguajes.
+version: 1.2.0
 language: es
 trigger: "implementa|implanta|genera el código de *.sql"
 supported_extensions:
