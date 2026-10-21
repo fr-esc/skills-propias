@@ -70,7 +70,4 @@ git clone ssh://git@ssh.github.com:443/fr-esc/skills-propias.git /tmp/skills-pro
 cp -a /tmp/skills-propias/. ~/.config/opencode/skills/
 ```
 
-## Notas
 
-- El remoto usa SSH por el puerto 443 (`ssh.github.com`), que funciona también en redes que bloquean el puerto 22.
-- Las skills se validan antes de cada commit: YAML correcto, `id = name`, sin referencias a skills inexistentes.
